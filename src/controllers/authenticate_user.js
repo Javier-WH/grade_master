@@ -1,11 +1,9 @@
 import { AuthenticationError } from '../errors/authentication_errors.js'
 import { DataBaseConectionError } from '../errors/dataBaseConectionError.js'
+import getToken from '../utils/tokenMaker.js'
 import User from '../models/user.js'
 
 export async function authenticateUser ({ user, password }) {
-  let USER
-  let PASS
-
   try {
     const databaseResponse = await User.findOne({
       where: {
@@ -14,14 +12,13 @@ export async function authenticateUser ({ user, password }) {
       }
     })
 
-    if (databaseResponse !== null) {
-      USER = databaseResponse.user
-      PASS = databaseResponse.password
-    }
-
     return new Promise((resolve, reject) => {
-      if (user === USER && password === PASS) {
-        resolve('Token')
+      if (databaseResponse != null && databaseResponse.user === user && databaseResponse.password === password) {
+        const token = getToken(databaseResponse.user, databaseResponse.password)
+        resolve({
+          token,
+          id: databaseResponse.id
+        })
       } else {
         reject(new AuthenticationError())
       }
