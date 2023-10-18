@@ -22,18 +22,11 @@ const sequelize = new Sequelize(database, username, password, {
     timestamps: true
   }
 })
-/*
-try {
-  await sequelize.authenticate()
-  console.log('Connection has been established successfully.')
-} catch (error) {
-  console.error('Unable to connect to the database:', error)
-}
-*/
+
 sequelize.sync({ alter: true, force: true }).then(() => {
   console.log('Database synchronized')
 }).catch(error => {
-  console.error('An error occurred while synchronizing the database', error)
+  console.error('An error occurred while synchronizing the database', error.name)
 })
 
 export default sequelize

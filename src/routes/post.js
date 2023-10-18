@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/login', async (req, res) => {
   try {
     const { id, token } = await authenticateUser(req.body)
-    res.set('Authorization', `Bearer ${token}`)
+    res.set('Authorization', `${token}`)
     res.status(200).send(id)
   } catch (error) {
     return errorManager(error, res)

@@ -4,7 +4,9 @@ import express from 'express'
 
 const router = express.Router()
 
-router.use(express.json())
+router.post('*', express.json(), (req, res, next) => {
+  next()
+})
 
 // validate login, require user and password
 router.post('/login', (req, res, next) => {

@@ -1,16 +1,10 @@
-import { AuthenticationError } from './authentication_errors.js'
-import { DataBaseConectionError, DuplicateValues } from './dataBaseConectionError.js'
-
 export default function errorManager (error, res) {
-  let response = res.status(500)
-
-  if (error instanceof AuthenticationError) {
-    response = res.status(401).send(error.message)
-  } else if (error instanceof DuplicateValues) {
-    response = res.status(409).json({ message: error.message, fields: error.fields })
-  } else if (error instanceof DataBaseConectionError) {
-    response = res.status(503).send(error.message)
+  if (error.original && error.original.code === 'ER_DUP_ENTRY') {
+    res.status(409).send('El usuario, el id o el email ya estan registrados')
+  } else if (error.code === 'ER_REJECT_USER') {
+    res.status(401).send(error.message)
+  } else {
+    console.log(error)
+    res.status(500).send(error.name)
   }
-
-  return response
 }
