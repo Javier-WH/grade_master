@@ -1,12 +1,12 @@
 import validateUserData from '../utils/validateUserData.js'
 import validateSingUpData from '../utils/validateSingUpData.js'
+import validateUserPatchData from '../utils/validateUserPatchData.js'
 import express from 'express'
 
 const router = express.Router()
 
-router.post('*', express.json(), (req, res, next) => {
-  next()
-})
+router.post('*', express.json(), (req, res, next) => next())
+router.patch('*', express.json(), (req, res, next) => next())
 
 // validate login, require user and password
 router.post('/login', (req, res, next) => {
@@ -30,6 +30,21 @@ router.post('/singup', async (req, res, next) => {
     res.status(400).send(errorMessage)
     return
   }
+  req.body = value
+  next()
+})
+
+// validate user patch data
+
+router.patch('/user/:id', async (req, res, next) => {
+  const { error, value } = validateUserPatchData(req.body)
+
+  if (error) {
+    const errorMessage = error.details.map(detail => detail.message).join(', ')
+    res.status(400).send(errorMessage)
+    return
+  }
+
   req.body = value
   next()
 })

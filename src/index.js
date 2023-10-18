@@ -2,6 +2,7 @@ import express from 'express'
 import getRoutes from './routes/get.js'
 import postRoutes from './routes/post.js'
 import deleteRoutes from './routes/delete.js'
+import patchRoutes from './routes/patch.js'
 import notFound from './routes/not_found.js'
 import midlewares from './routes/midlewares.js'
 import getLocalIp from './utils/get_local_ip.js'
@@ -13,6 +14,7 @@ app.use(midlewares)
 app.use(getRoutes)
 app.use(postRoutes)
 app.use(deleteRoutes)
+app.use(patchRoutes)
 app.use(notFound)
 
 const port = process.env.PORT ?? 3000
