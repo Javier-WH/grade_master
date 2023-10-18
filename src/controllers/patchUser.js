@@ -1,5 +1,6 @@
 import User from '../models/user.js'
 import { hashPassword } from '../utils/encryptor.js'
+import { UserNotFoundError, MissingDataError } from '../errors/authentication_errors.js'
 
 export default async function updateUser ({ id, email, password }) {
   const updateData = {}
@@ -13,7 +14,7 @@ export default async function updateUser ({ id, email, password }) {
   }
 
   if (Object.keys(updateData).length === 0) {
-    throw new Error('No se proporcionaron datos para actualizar')
+    throw new MissingDataError()
   }
 
   const [rowsAffected] = await User.update(updateData, {
@@ -21,7 +22,7 @@ export default async function updateUser ({ id, email, password }) {
   })
 
   if (rowsAffected === 0) {
-    throw new Error('Usuario no encontrado')
+    throw new UserNotFoundError()
   }
 
   return id
