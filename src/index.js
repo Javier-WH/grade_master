@@ -6,7 +6,6 @@ import patchRoutes from './routes/patch.js'
 import notFound from './routes/not_found.js'
 import midlewares from './routes/midlewares.js'
 import getLocalIp from './utils/get_local_ip.js'
-
 const app = express()
 app.disable('x-powered-by')
 
