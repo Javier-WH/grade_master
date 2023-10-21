@@ -10,8 +10,14 @@ StudentsGrades.init(
       primaryKey: true,
       autoIncrement: true
     },
-    student_id: { // have to add references when studens table is created
-      type: DataTypes.UUID
+    student_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'students',
+        key: 'id'
+
+      }
     },
     evaluation_plan_id: {
       type: DataTypes.UUID,
