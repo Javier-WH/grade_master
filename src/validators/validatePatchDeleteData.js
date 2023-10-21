@@ -1,11 +1,10 @@
 import { validate as validateUUID } from 'uuid'
 import verificateToken from '../utils/tokenReader.js'
 
-export default function validateData (req, res) {
+export default function validateData (req) {
   const userId = req.params.id
-  const authorization = req.get('authorization')
+  const authorization = req.get('Authorization')
   const currentTimestamp = Math.floor(Date.now() / 1000)
-
   // check if id is a valid uuid and have and autorization token
   if (!validateUUID(userId) || authorization === undefined) {
     return {

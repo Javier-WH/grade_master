@@ -1,4 +1,5 @@
 import validateSeccionSubjectData from '../../validators/validateSeccionSubjectData.js'
+import validateGetEvalPlanData from '../../validators/validateGetEvalPlanData.js'
 import verificateToken from '../../utils/tokenReader.js'
 import getUser from '../../controllers/user/getUser.js'
 import errorManager from '../../errors/errorManager.js'
@@ -29,6 +30,24 @@ router.get('/seccion_subjects', express.json(), async (req, res, next) => {
     idAcademicYear: value.id_AcademicYear,
     idSeccion: value.id_Seccion
   }
+  next()
+})
+
+router.get('/evalplan', express.json(), async (req, res, next) => {
+  const { error, value } = validateGetEvalPlanData(req.body)
+  if (error) {
+    const errorMessage = error.details.map(detail => detail.message).join(', ')
+    res.status(400).send(errorMessage)
+    return
+  }
+  // remove unnecesary data
+  const data = {
+    idAcademicYear: value.id_academic_year,
+    idSeccion: value.id_seccion,
+    idSubject: value.id_subject,
+    lapse: value.lapse
+  }
+  req.body = data
   next()
 })
 

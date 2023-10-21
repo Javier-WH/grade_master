@@ -7,6 +7,7 @@ import notFound from '.././routes/not_found.js'
 import patchMidlewares from '.././routes/midelwares/patch.js'
 import getMidelwares from '.././routes/midelwares/get.js'
 import postMidlewares from '.././routes/midelwares/post.js'
+import deleteMidleware from '../routes/midelwares/delete.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.disable('x-powered-by')
 app.use(patchMidlewares)
 app.use(getMidelwares)
 app.use(postMidlewares)
+app.use(deleteMidleware)
 app.use(getRoutes)
 app.use(postRoutes)
 app.use(deleteRoutes)

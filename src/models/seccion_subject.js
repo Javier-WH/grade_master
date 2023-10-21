@@ -36,7 +36,8 @@ SeccionSubject.init(
     },
     id_User: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: null,
       references: {
         model: 'Users',
         key: 'id'
