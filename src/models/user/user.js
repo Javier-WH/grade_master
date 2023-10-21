@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { v4 as uuidv4 } from 'uuid'
-import sequelize from '../SQL/connection.js'
+import sequelize from '../../SQL/connection.js'
 
 class User extends Model { }
 

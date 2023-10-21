@@ -1,6 +1,6 @@
 import express from 'express'
-import { authenticateUser } from '../controllers/authenticate_user.js'
-import singUpUser from '../controllers/singUpUser.js'
+import { authenticateUser } from '../controllers/user/authenticate_user.js'
+import singUpUser from '../controllers/user/singUpUser.js'
 import errorManager from '../errors/errorManager.js'
 const router = express.Router()
 

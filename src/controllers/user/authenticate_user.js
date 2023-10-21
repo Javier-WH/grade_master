@@ -1,7 +1,7 @@
-import { AuthenticationError } from '../errors/authentication_errors.js'
-import getToken from '../utils/tokenMaker.js'
-import User from '../models/user.js'
-import { comparePassword } from '../utils/encryptor.js'
+import { AuthenticationError } from '../../errors/authentication_errors.js'
+import getToken from '../../utils/tokenMaker.js'
+import User from '../../models/user/user.js'
+import { comparePassword } from '../../utils/encryptor.js'
 
 export async function authenticateUser ({ user, password }) {
   const databaseResponse = await User.findOne({

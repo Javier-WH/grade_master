@@ -1,6 +1,6 @@
 import express from 'express'
-import validateUuid from '../utils/validatePatchDeleteData.js'
-import updateUser from '../controllers/patchUser.js'
+import validateUuid from '../validators/validatePatchDeleteData.js'
+import updateUser from '../controllers/user/patchUser.js'
 import errorManager from '../errors/errorManager.js'
 
 const router = express.Router()

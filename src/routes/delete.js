@@ -1,6 +1,6 @@
 import express from 'express'
-import deleteUser from '../controllers/deleteUser.js'
-import validateData from '../utils/validatePatchDeleteData.js'
+import deleteUser from '../controllers/user/deleteUser.js'
+import validateData from '../validators/validatePatchDeleteData.js'
 const router = express.Router()
 
 router.delete('/user/:id', async (req, res) => {

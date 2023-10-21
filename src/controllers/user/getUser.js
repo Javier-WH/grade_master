@@ -1,5 +1,5 @@
-import User from '../models/user.js'
-import { MissingDataError, UserNotFoundError } from '../errors/authentication_errors.js'
+import User from '../../models/user/user.js'
+import { MissingDataError, UserNotFoundError } from '../../errors/authentication_errors.js'
 export default async function getUser ({ id, user, email }) {
   const serchParams = {}
 

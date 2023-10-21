@@ -1,20 +1,5 @@
-import express from 'express'
-import getRoutes from './routes/get.js'
-import postRoutes from './routes/post.js'
-import deleteRoutes from './routes/delete.js'
-import patchRoutes from './routes/patch.js'
-import notFound from './routes/not_found.js'
-import midlewares from './routes/midlewares.js'
+import app from './app/app.js'
 import getLocalIp from './utils/get_local_ip.js'
-const app = express()
-app.disable('x-powered-by')
-
-app.use(midlewares)
-app.use(getRoutes)
-app.use(postRoutes)
-app.use(deleteRoutes)
-app.use(patchRoutes)
-app.use(notFound)
 
 const port = process.env.PORT ?? 3000
 const host = process.env.HOST ?? getLocalIp()

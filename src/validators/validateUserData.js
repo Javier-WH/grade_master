@@ -1,7 +1,7 @@
 // this file contains a function that validate user data before it's used
 
 import joi from 'joi'
-import { userDataConst, userValidationMessages } from './const.js'
+import { userDataConst, userValidationMessages } from '../utils/const.js'
 const { userMinLength, userRegex, passwordMinLength, passwordRegex } = userDataConst
 const { userErrorMessages, passwordErrorMessages } = userValidationMessages
 
