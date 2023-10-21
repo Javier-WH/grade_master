@@ -1,6 +1,6 @@
 // this file contains a function that validate seccion and subject data
 import joi from 'joi'
-import { userValidationMessages } from '../utils/const.js'
+import { userValidationMessages } from '../const/const.js'
 const { uuidErrorMessages } = userValidationMessages
 
 export default function validateSeccionSubjectData (userData) {

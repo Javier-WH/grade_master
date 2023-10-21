@@ -1,6 +1,6 @@
 // this file contains a function that validate user data before sing up
 import joi from 'joi'
-import { userDataConst, userValidationMessages } from '../utils/const.js'
+import { userDataConst, userValidationMessages } from '../const/const.js'
 const { passwordMinLength, passwordRegex } = userDataConst
 const { passwordErrorMessages, emailError } = userValidationMessages
 
