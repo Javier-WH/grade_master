@@ -43,7 +43,7 @@ export default async function getEvalPlan ({ idAcademicYear, idSeccion, idSubjec
   const CleanEvalPlan = Object.fromEntries(
     Object.entries(uncleanEvalPlan).filter(([key, value]) => {
       if (key.startsWith('eval')) {
-        return value.percent !== null
+        return value.percent !== null || value.description !== null || value.date !== null
       }
       return false
     })
