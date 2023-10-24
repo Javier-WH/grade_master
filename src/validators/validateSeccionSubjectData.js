@@ -5,9 +5,7 @@ const { uuidErrorMessages } = userValidationMessages
 
 export default function validateSeccionSubjectData (userData) {
   const singUpSchema = joi.object({
-    id_AcademicYear: joi.string().uuid().required().messages(uuidErrorMessages),
-    id_Seccion: joi.string().uuid().required().messages(uuidErrorMessages)
-
+    id: joi.string().uuid().required().messages(uuidErrorMessages)
   }).options({ allowUnknown: true, stripUnknown: true })
 
   return singUpSchema.validate(userData)

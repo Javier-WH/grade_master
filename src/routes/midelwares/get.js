@@ -41,10 +41,7 @@ router.get('/seccion', express.json(), async (req, res, next) => {
     return
   }
   // remove unnecesary data
-  req.body = {
-    idAcademicYear: value.id_AcademicYear,
-    idSeccion: value.id_Seccion
-  }
+  req.body = value
   next()
 })
 
