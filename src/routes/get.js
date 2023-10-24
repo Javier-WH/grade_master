@@ -1,5 +1,5 @@
 import express from 'express'
-/*
+
 import User from '../models/user/user.js'
 import Period from '../models/basics/period.js'
 import AcademicYears from '../models/basics/academicYears.js'
@@ -15,7 +15,7 @@ import EvalPlanPercents from '../models/evaluationPlan/evalPlanPercents.js'
 import Students from '../models/students/student.js'
 import Grades from '../models/students/grade.js'
 import Failed from '../models/students/failed.js'
-*/
+
 const router = express.Router()
 
 router.get('/academicYears', async (req, res) => {

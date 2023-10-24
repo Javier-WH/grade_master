@@ -19,7 +19,8 @@ Subject.init(
       references: {
         model: Seccion,
         key: 'id'
-      }
+      },
+      field: 'idSeccion'
     },
     idSubjectName: {
       type: DataTypes.CHAR(36),
@@ -27,7 +28,8 @@ Subject.init(
       references: {
         model: SubjectName,
         key: 'id'
-      }
+      },
+      field: 'idSubjectName'
     },
     idUser: {
       type: DataTypes.CHAR(36),
@@ -35,7 +37,8 @@ Subject.init(
       references: {
         model: User,
         key: 'id'
-      }
+      },
+      field: 'idUser'
     }
   },
   {

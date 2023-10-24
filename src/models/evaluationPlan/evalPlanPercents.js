@@ -12,7 +12,8 @@ EvalPlanPercents.init(
       references: {
         model: EvaluationPlan,
         key: 'id'
-      }
+      },
+      field: 'idEvaluationPlan'
     },
     eval1: {
       type: DataTypes.FLOAT,

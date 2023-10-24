@@ -19,7 +19,8 @@ Seccion.init(
       references: {
         model: SeccionName,
         key: 'id'
-      }
+      },
+      field: 'idSeccionName'
     },
     idAcademicYear: {
       type: DataTypes.CHAR(36),
@@ -27,7 +28,8 @@ Seccion.init(
       references: {
         model: AcademicYear,
         key: 'id'
-      }
+      },
+      field: 'idAcademicYear'
     },
     idPeriod: {
       type: DataTypes.CHAR(36),
@@ -35,14 +37,21 @@ Seccion.init(
       references: {
         model: Period,
         key: 'id'
-      }
+      },
+      field: 'idPeriod'
     }
   },
   {
     sequelize,
     modelName: 'Seccion',
     tableName: 'seccions',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['idSeccionName', 'idAcademicYear', 'idPeriod']
+      }
+    ]
   }
 )
 

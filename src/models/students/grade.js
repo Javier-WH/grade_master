@@ -13,7 +13,8 @@ Grade.init(
       references: {
         model: Student,
         key: 'id'
-      }
+      },
+      field: 'idStudent'
     },
     idEvaluationPlan: {
       type: DataTypes.CHAR(36),
@@ -21,7 +22,8 @@ Grade.init(
       references: {
         model: EvaluationPlan,
         key: 'id'
-      }
+      },
+      field: 'idEvaluationPlan'
     },
     eval1: {
       type: DataTypes.FLOAT,

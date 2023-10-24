@@ -17,7 +17,8 @@ Student.init(
     },
     lastName: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      field: 'lastName'
     },
     ci: {
       type: DataTypes.STRING(255),
@@ -29,7 +30,8 @@ Student.init(
       references: {
         model: Seccion,
         key: 'id'
-      }
+      },
+      field: 'idSeccion'
     },
     failed: {
       type: DataTypes.TINYINT,

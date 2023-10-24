@@ -13,7 +13,8 @@ Failed.init(
       references: {
         model: Student,
         key: 'id'
-      }
+      },
+      field: 'idStudent'
     },
     subject1: {
       type: DataTypes.CHAR(36),

@@ -18,14 +18,16 @@ EvaluationPlan.init(
       references: {
         model: Subject,
         key: 'id'
-      }
+      },
+      field: 'idSubject'
     },
     idLapse: {
       type: DataTypes.CHAR(36),
       references: {
         model: LapseName,
         key: 'id'
-      }
+      },
+      field: 'idLapse'
     }
   },
   {
