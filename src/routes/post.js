@@ -1,26 +1,13 @@
 import express from 'express'
-import { authenticateUser } from '../controllers/user/authenticate_user.js'
-import singUpUser from '../controllers/user/singUpUser.js'
-import errorManager from '../errors/errorManager.js'
+
 const router = express.Router()
 
 router.post('/login', async (req, res) => {
-  try {
-    const { id, token } = await authenticateUser(req.body)
-    res.set('Authorization', `${token}`)
-    res.status(200).send(id)
-  } catch (error) {
-    return errorManager(error, res)
-  }
+  res.status(200).send('hola')
 })
 
 router.post('/singup', async (req, res) => {
-  try {
-    const id = await singUpUser(req.body)
-    res.status(200).send(id)
-  } catch (error) {
-    return errorManager(error, res)
-  }
+  res.status(200).send('hola')
 })
 
 export default router

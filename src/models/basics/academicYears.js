@@ -1,29 +1,25 @@
 import { Model, DataTypes } from 'sequelize'
 import sequelize from '../../SQL/connection.js'
 
-class User extends Model { }
+class AcademicYear extends Model { }
 
-User.init(
+AcademicYear.init(
   {
     id: {
       type: DataTypes.CHAR(36),
       primaryKey: true
     },
-    user: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    password: {
+    name: {
       type: DataTypes.STRING(255),
       allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'User',
-    tableName: 'users',
+    modelName: 'AcademicYear',
+    tableName: 'academicyears',
     timestamps: false
   }
 )
 
-export default User
+export default AcademicYear

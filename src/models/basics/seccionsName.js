@@ -1,29 +1,25 @@
 import { Model, DataTypes } from 'sequelize'
 import sequelize from '../../SQL/connection.js'
 
-class User extends Model { }
+class SeccionName extends Model { }
 
-User.init(
+SeccionName.init(
   {
     id: {
       type: DataTypes.CHAR(36),
       primaryKey: true
     },
-    user: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    password: {
+    name: {
       type: DataTypes.STRING(255),
       allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'User',
-    tableName: 'users',
+    modelName: 'SeccionName',
+    tableName: 'seccionsNames',
     timestamps: false
   }
 )
 
-export default User
+export default SeccionName

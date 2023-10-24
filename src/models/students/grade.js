@@ -1,78 +1,75 @@
-import { DataTypes, Model } from 'sequelize'
+import { Model, DataTypes } from 'sequelize'
 import sequelize from '../../SQL/connection.js'
+import Student from './student.js'
+import EvaluationPlan from '../evaluationPlan/evaluationPlan.js'
 
-export default class EvalPlanPercents extends Model { }
+class Grade extends Model { }
 
-EvalPlanPercents.init(
+Grade.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    evaluation_plan_id: {
-      type: DataTypes.UUID,
+    idStudent: {
+      type: DataTypes.CHAR(36),
       allowNull: false,
       references: {
-        model: 'EvaluationPlans',
+        model: Student,
         key: 'id'
-
+      }
+    },
+    idEvaluationPlan: {
+      type: DataTypes.CHAR(36),
+      allowNull: false,
+      references: {
+        model: EvaluationPlan,
+        key: 'id'
       }
     },
     eval1: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval2: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval3: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval4: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval5: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval6: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval7: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval8: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval9: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     },
     eval10: {
       type: DataTypes.FLOAT,
-      allowNull: true,
       defaultValue: null
     }
   },
   {
     sequelize,
-    modelName: 'EvalPlanPercents',
-    tableName: 'evalPlan_percents'
+    modelName: 'Grade',
+    tableName: 'grades',
+    timestamps: false
   }
 )
+
+export default Grade
