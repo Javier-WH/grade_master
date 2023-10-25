@@ -1,9 +1,8 @@
 import express from 'express'
-
 const router = express.Router()
 
-router.patch('/user/:id', async (req, res) => {
-  res.status(200).send('hola')
+router.get('/seccion', express.json(), (req, res, next) => {
+  next()
 })
 
 export default router

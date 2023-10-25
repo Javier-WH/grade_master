@@ -1,5 +1,5 @@
 import express from 'express'
-import getStudentsBySeccionId from '../controller_middlewares/seccion/getStudentsBySeccionId.js'
+import getStudentsBySeccionId from '../../controllers/seccion/getStudentsBySeccionId.js'
 /*
 import User from '../models/user/user.js'
 import Period from '../models/basics/period.js'
@@ -18,26 +18,6 @@ import Grades from '../models/students/grade.js'
 import Failed from '../models/students/failed.js'
 */
 const router = express.Router()
-
-router.get('/academicYears', async (req, res) => {
-  res.status(200).send('hola')
-})
-
-router.get('/seccions', async (req, res) => {
-  res.status(200).send('hola')
-})
-
-router.get('/subjects', async (req, res) => {
-  res.status(200).send('hola')
-})
-
-router.get('/seccion_subjects', async (req, res) => {
-  res.status(200).send('hola')
-})
-
-router.get('/evalplan', async (req, res) => {
-  res.status(200).send('hola')
-})
 
 router.get('/seccion', getStudentsBySeccionId)
 

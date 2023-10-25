@@ -1,9 +1,7 @@
 import express from 'express'
-
+import get from './get.js'
 const router = express.Router()
 
-router.delete('/user/:id', async (req, res) => {
-  res.status(200).send('hola')
-})
+router.use(get)
 
 export default router
