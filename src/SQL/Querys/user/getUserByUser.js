@@ -1,13 +1,13 @@
 import User from '../../../models/user/user.js'
 
-export default async function getUserByUserAndPassword ({ user, password }) {
+export default async function getUserByUser ({ user }) {
   const userData = await User.findOne(
     {
       where: {
-        user,
-        password
+        user
       }
     }
   )
+
   return userData
 }

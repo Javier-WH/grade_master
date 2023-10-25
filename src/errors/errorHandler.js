@@ -11,12 +11,12 @@ export default function errorManager (error) {
   } else if (error.name === 'MissingDataError') {
     message = error.message
     code = 400
-  } else if (error.name === 'AuthenticationError') {
+  } else if (error.name === 'AuthenticationError' || error.name === 'UserNotFoundError') {
     message = error.message
     code = 401
   }
 
-  console.log(error)
+  console.log(error.name)
   return {
     message,
     code
