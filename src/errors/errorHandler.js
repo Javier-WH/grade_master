@@ -1,5 +1,4 @@
 export default function errorManager (error) {
-  console.log(error)
   let message = 'Error'
   let code = 500
 
@@ -12,8 +11,12 @@ export default function errorManager (error) {
   } else if (error.name === 'MissingDataError') {
     message = error.message
     code = 400
+  } else if (error.name === 'AuthenticationError') {
+    message = error.message
+    code = 401
   }
 
+  console.log(error)
   return {
     message,
     code

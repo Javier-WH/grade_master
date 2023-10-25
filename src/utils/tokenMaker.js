@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const secretKey = 'GraDeMaster'
+const secretKey = process.env.TOKENKEY
 
 export default function getToken ({ id, user }) {
   const payload = { id, user }

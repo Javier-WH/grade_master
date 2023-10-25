@@ -31,5 +31,6 @@ export const userValidationMessages = {
 }
 
 export const baseRoutes = {
-  seccion: '/seccion'
+  seccion: '/seccion',
+  user: '/user'
 }
