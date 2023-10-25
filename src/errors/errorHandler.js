@@ -9,6 +9,9 @@ export default function errorManager (error) {
   } else if (error.name === 'SequelizeUniqueConstraintError' || error.name === 'SequelizeForeignKeyConstraintError') {
     message = 'Error de violación de restricción única'
     code = 400
+  } else if (error.name === 'MissingDataError') {
+    message = error.message
+    code = 400
   }
 
   return {
