@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
-router.get('/', express.json(), (req, res, next) => {
+router.post('/', express.json(), (req, res, next) => {
   next()
 })
 

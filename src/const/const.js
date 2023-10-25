@@ -29,3 +29,7 @@ export const userValidationMessages = {
     'any.required': 'El campo "email" es requerido'
   }
 }
+
+export const baseRoutes = {
+  seccion: '/seccion'
+}

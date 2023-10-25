@@ -19,6 +19,6 @@ import Failed from '../models/students/failed.js'
 */
 const router = express.Router()
 
-router.get('/seccion', getStudentsBySeccionId)
+router.get('/', getStudentsBySeccionId)
 
 export default router
