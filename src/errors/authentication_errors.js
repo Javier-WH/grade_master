@@ -1,26 +1,25 @@
-export class AuthenticationError extends Error {
-  constructor () {
-    super()
-    this.name = 'AuthenticationError'
-    this.message = 'El usuario o la contraseña suministrados son invalidos'
-    this.code = 'ER_REJECT_USER'
+class CustomError extends Error {
+  constructor (name, message, code) {
+    super(message)
+    this.name = name
+    this.code = code
   }
 }
 
-export class UserNotFoundError extends Error {
-  constructor () {
-    super()
-    this.name = 'UserNotFoundError'
-    this.message = 'Usuario no encontrado'
-    this.code = 'ER_NOT_FOUND_USER'
+export class AuthenticationError extends CustomError {
+  constructor (message) {
+    super('AuthenticationError', message || 'El usuario o la contraseña suministrados son inválidos', 'ER_REJECT_USER')
   }
 }
 
-export class MissingDataError extends Error {
-  constructor () {
-    super()
-    this.name = 'MissingDataError'
-    this.message = 'No se han suministrado los datos requeridos'
-    this.code = 'ER_MISS_DATA'
+export class UserNotFoundError extends CustomError {
+  constructor (message) {
+    super('UserNotFoundError', message || 'Usuario no encontrado', 'ER_NOT_FOUND_USER')
+  }
+}
+
+export class MissingDataError extends CustomError {
+  constructor (message) {
+    super('MissingDataError', message || 'No se han suministrado los datos requeridos', 'ER_MISS_DATA')
   }
 }
