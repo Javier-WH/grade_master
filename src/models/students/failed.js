@@ -1,20 +1,13 @@
 import { Model, DataTypes } from 'sequelize'
 import sequelize from '../../SQL/connection.js'
-import Student from './student.js'
 
 class Failed extends Model { }
 
 Failed.init(
   {
-    idStudent: {
+    id: {
       type: DataTypes.CHAR(36),
-      primaryKey: true,
-      allowNull: false,
-      references: {
-        model: Student,
-        key: 'id'
-      },
-      field: 'idStudent'
+      primaryKey: true
     },
     subject1: {
       type: DataTypes.CHAR(36),

@@ -5,7 +5,7 @@ import { AuthenticationError } from '../../errors/authentication_errors.js'
 import ErrorHandler from '../../errors/errorHandler.js'
 const router = express.Router()
 
-router.all('/*', async (req, res, next) => {
+router.all('*', async (req, res, next) => {
   try {
     const id = req.headers.id
     const authorization = req.headers.authorization

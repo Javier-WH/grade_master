@@ -16,7 +16,7 @@ export default function errorManager (error) {
     code = 401
   }
 
-  console.log(error.name)
+  console.log(error.message)
   return {
     message,
     code
