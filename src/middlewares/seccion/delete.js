@@ -1,12 +1,14 @@
 import express from 'express'
+import validateGetSeccionData from '../../validators/seccion/validateGetSeccionData.js'
 import { MissingDataError } from '../../errors/authentication_errors.js'
 import ErrorHandler from '../../errors/errorHandler.js'
-import validatePatchSeccionData from '../../validators/seccion/validatePatchSeccionData.js'
+
 const router = express.Router()
 
-router.patch('/:id', express.json(), (req, res, next) => {
+router.get('/delete', express.json(), async (req, res, next) => {
   try {
-    const { error, value } = validatePatchSeccionData(req.body)
+    // valida los datos del body
+    const { error, value } = validateGetSeccionData(req.body)
     if (error) {
       throw new MissingDataError()
     }
