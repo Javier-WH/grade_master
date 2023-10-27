@@ -5,7 +5,7 @@ import ErrorHandler from '../../errors/errorHandler.js'
 
 const router = express.Router()
 
-router.get('/', express.json(), async (req, res, next) => {
+const validateSeccionData = async (req, res, next) => {
   try {
     // valida los datos del body
     const { error, value } = validateGetSeccionData(req.body)
@@ -18,6 +18,9 @@ router.get('/', express.json(), async (req, res, next) => {
     const { code, message } = ErrorHandler(error)
     res.status(code).send(message)
   }
-})
+}
+
+router.get('/id', express.json(), validateSeccionData)
+router.get('/subject', express.json(), validateSeccionData)
 
 export default router

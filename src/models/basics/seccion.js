@@ -10,7 +10,6 @@ Seccion.init(
   {
     id: {
       type: DataTypes.CHAR(36),
-      unique: true,
       primaryKey: true
     },
     idSeccionName: {

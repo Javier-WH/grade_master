@@ -9,7 +9,7 @@ export default async function getStudentsBySubjectId (seccionId) {
     'students.ci AS "studentCi",' +
     'students.idSeccion AS "seccionId",' +
     'seccionsnames.name AS "seccionName",' +
-    'subjects.idSubjectName AS "subjectId",' +
+    'subjects.id AS "subjectId",' +
     'subjectsnames.name AS "subjecName",' +
     'subjects.idUser AS "teacherId",' +
     'students.failed,' +
@@ -34,5 +34,5 @@ export default async function getStudentsBySubjectId (seccionId) {
 
   const result = await sequelize.query(query)
 
-  console.log(result)
+  return result
 }

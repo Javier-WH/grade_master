@@ -7,8 +7,7 @@ LapseName.init(
   {
     id: {
       type: DataTypes.CHAR(36),
-      primaryKey: true,
-      unique: true
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING(255),
