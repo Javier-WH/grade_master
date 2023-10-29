@@ -12,6 +12,10 @@ export default async function getStudentsBySubjectId (seccionId) {
     'subjects.id AS "subjectId",' +
     'subjectsnames.name AS "subjecName",' +
     'subjects.idUser AS "teacherId",' +
+    'evaluationplan.idLapse AS "lapseId",' +
+    'lapsename.name AS "lapseName",' +
+    'period.period AS "PeriodName",' +
+    'period.id AS "PeriodId",' +
     'students.failed,' +
     'failed.subject1,' +
     'failed.subject2,' +
@@ -42,6 +46,8 @@ export default async function getStudentsBySubjectId (seccionId) {
     'LEFT JOIN evaluationplan ON evaluationplan.idSubject = subjects.id ' +
     'LEFT JOIN grades ON grades.idEvaluationPlan = evaluationplan.id AND grades.idStudent = students.id ' +
     'LEFT JOIN failed ON students.failed = failed.id ' +
+    'LEFT JOIN lapsename ON lapsename.id = evaluationplan.idLapse ' +
+    'LEFT JOIN period ON period.id = seccions.idPeriod ' +
     `WHERE subjects.id = '${seccionId}'`
 
   const result = await sequelize.query(query)
