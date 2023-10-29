@@ -1,12 +1,17 @@
 import SeccionName from '../../../models/basics/seccionsName.js'
 import { v4 as uuidv4 } from 'uuid'
 
-export default async function putSeccionName ({ id, name }) {
+export default async function putSeccionName ({ id, name, active }) {
   if (id) {
+    const data = {}
+    if (name) {
+      data.name = name
+    }
+    if (active !== null || active !== undefined) {
+      data.active = active
+    }
     await SeccionName.update(
-      {
-        name
-      },
+      data,
       {
         where: {
           id

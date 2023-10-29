@@ -12,6 +12,11 @@ SubjectName.init(
     name: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   },
   {
