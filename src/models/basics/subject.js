@@ -44,7 +44,13 @@ Subject.init(
     sequelize,
     modelName: 'Subject',
     tableName: 'subjects',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['idSeccion', 'idSubjectName']
+      }
+    ]
   }
 )
 
