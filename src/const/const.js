@@ -10,3 +10,5 @@ export const baseRoutes = {
   seccion: '/seccion',
   user: '/user'
 }
+
+export const pageSize = 30

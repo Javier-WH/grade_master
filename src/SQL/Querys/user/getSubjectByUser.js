@@ -53,7 +53,7 @@ export default async function getSubjectByUser (userId) {
  'LEFT JOIN evalplanpercents ON evalplanpercents.idEvaluationPlan = evaluationplan.id ' +
  'LEFT JOIN evalplandescription ON evalplandescription.idEvaluationPlan = evaluationplan.id ' +
  'LEFT JOIN evalplandates ON evalplandates.idEvaluationPlan = evaluationplan.id ' +
-    `where subjects.idUser = '${userId}'`
+  `where subjects.idUser = '${userId}'`
 
   const request = await sequelize.query(query)
   return request[0]

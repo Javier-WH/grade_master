@@ -1,9 +1,13 @@
 import _getStudentsBySubjectId from '../../SQL/Querys/seccions/getStudentsBySubjectId.js'
 import ErrorHandler from '../../errors/errorHandler.js'
+
+// import { seccionBySubject } from '../../SQL/Querys/pages/getCountPages.js'
+/*
 export default async function getStudentsBySubjectId (req, res) {
   try {
+    // await seccionBySubject(req.body)
     // obtiene los datos de la seccion
-    const sqlRequest = await _getStudentsBySubjectId(req.body.id)
+    const sqlRequest = await _getStudentsBySubjectId(req.body)
     const uncleanData = sqlRequest[0]
 
     // elimina los alumnos inscritos en la seccion pero son repitientes, solo conserva los que repiten la materia
@@ -105,3 +109,114 @@ function orderSeccionData (data) {
   })
   return mergeObjectsBystudentIdAndsubjectId(orderedData)
 }
+*/
+
+export default async function getStudentsBySubjectId (req, res) {
+  try {
+    const sqlRequest = await _getStudentsBySubjectId(req.body)
+
+    // limpia los valores nulos
+    const cleanRequest = sqlRequest.map(student => {
+      const cleanStudent = Object.entries(student).reduce((acc, [key, value]) => {
+        if (value !== null) {
+          acc[key] = value
+        }
+        return acc
+      }, {})
+
+      let {
+        studentId, studentName, studentLastName, studentCi,
+        seccionId, seccionName, subjectId, subjecName,
+        teacherId, failed, lapseid, lapename,
+        eval1, eval2, eval3, eval4, eval5,
+        eval6, eval7, eval8, eval9, eval10
+      } = cleanStudent
+
+      if (lapename) {
+        lapename = lapename.split(':')
+      }
+      if (lapseid) {
+        lapseid = lapseid.split(':')
+      }
+
+      const grades = []
+      for (let i = 0; i < lapename.length; i++) {
+        const evals = {}
+        if (eval1) {
+          evals.eval1 = eval1.split(':')[i]
+        }
+        if (eval2) {
+          evals.eval2 = eval2.split(':')[i]
+        }
+        if (eval3) {
+          evals.eval3 = eval3.split(':')[i]
+        }
+        if (eval4) {
+          evals.eval4 = eval4.split(':')[i]
+        }
+        if (eval5) {
+          evals.eval5 = eval5.split(':')[i]
+        }
+        if (eval6) {
+          evals.eval6 = eval6.split(':')[i]
+        }
+        if (eval7) {
+          evals.eval7 = eval7.split(':')[i]
+        }
+        if (eval8) {
+          evals.eval8 = eval8.split(':')[i]
+        }
+        if (eval9) {
+          evals.eval9 = eval9.split(':')[i]
+        }
+        if (eval10) {
+          evals.eval10 = eval10.split(':')[i]
+        }
+
+        // esto corrije un bug
+        const entries = Object.entries(evals)
+        const filteredEvals = entries.filter(([_, value]) => value !== undefined)
+
+        if (Object.keys(filteredEvals).length > 0) {
+          grades.push({
+            lapseName: lapename[i],
+            lapseid: lapseid[i],
+            evals
+
+          })
+        }
+      }
+
+      const data = {
+        studentId,
+        studentName,
+        studentLastName,
+        studentCi,
+        seccionId,
+        seccionName,
+        subjectId,
+        subjecName,
+        teacherId,
+        failed,
+        ...(grades.length > 0 && { grades })
+
+      }
+
+      return data
+    })
+
+    res.status(200).json(cleanRequest)
+  } catch (error) {
+    const { code, message } = ErrorHandler(error)
+    res.status(code).send(message)
+  }
+}
+
+/*
+"lapseid": "9a1e2c3d-4b5a-6c7d-8e9f-0a1b2c3d4e5f:a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d:1e2f3a4b-5c6d-7e8f-9a0b-c1d2e3f4a5b",
+"lapename": "Primer Lapso:Segundo Lapso:Tercer Lapso",
+"eval1": "12:15",
+"eval2": "15:17",
+"eval3": "14:17",
+"eval4": "11:18"
+*/
