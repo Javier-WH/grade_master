@@ -14,8 +14,10 @@ export default function errorManager (error) {
   } else if (error.name === 'AuthenticationError' || error.name === 'UserNotFoundError') {
     message = error.message
     code = 401
+  } else if (error.name === 'NotFoundError') {
+    message = error.message
+    code = 404
   }
-
   console.log(error.message)
   return {
     message,

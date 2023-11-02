@@ -23,3 +23,9 @@ export class MissingDataError extends CustomError {
     super('MissingDataError', message || 'No se han suministrado los datos requeridos', 'ER_MISS_DATA')
   }
 }
+
+export class NotFoundError extends CustomError {
+  constructor (message) {
+    super('NotFoundError', message || 'El recurso solicitado no existe', 'ER_NOT_FOUND')
+  }
+}
