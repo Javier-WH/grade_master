@@ -1,5 +1,5 @@
 import express from 'express'
-import getStudentsBySeccionId from '../../controllers/seccion/getStudentsBySeccionId.js'
+import getStudentsBySeccionId from '../../controllers/seccion/getStudentsBySeccionId/getStudentsBySeccionId.js'
 import getStudentsBySubjectId from '../../controllers/seccion/getSeccionBySubjectId/getSeccionBySubjectId.js'
 
 const router = express.Router()

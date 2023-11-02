@@ -1,5 +1,7 @@
 import sequelize from '../../connection.js'
+import Student from '../../../models/students/student.js'
 import { QueryTypes } from 'sequelize'
+import AcademicYear from '../../../models/basics/academicYears.js'
 
 export async function seccionBySubjectRegisters ({ id }) {
   const query = `
@@ -56,4 +58,79 @@ FROM (
 
   const request = await sequelize.query(query, { type: QueryTypes.SELECT })
   return request[0].totalRegistros
+}
+
+export async function seccionByIdRegisters ({ idSeccion }) {
+  const result = await Student.count(
+    {
+      where: {
+        idSeccion
+      }
+    }
+  )
+  return result
+}
+
+export async function subjectByUserId ({ userId }) {
+  const query = `SELECT COUNT(*) AS totalRegistros
+    FROM (
+    SELECT
+    subjects.id AS 'idSubject', 
+    subjects.idSeccion AS 'idSeccion', 
+    seccionsnames.name AS "seccionName",
+    academicyears.id AS 'idAcademicYear',
+    academicyears.name AS "academicYearName", 
+    period.id AS 'idPeriod',
+    period.period AS 'periodName',
+    GROUP_CONCAT(evalplanpercents.eval1 SEPARATOR ":") AS percent1,
+    GROUP_CONCAT(evalplanpercents.eval2 SEPARATOR ":") AS percent2,
+    GROUP_CONCAT(evalplanpercents.eval3 SEPARATOR ":") AS percent3,
+    GROUP_CONCAT(evalplanpercents.eval4 SEPARATOR ":") AS percent4,
+    GROUP_CONCAT(evalplanpercents.eval5 SEPARATOR ":") AS percent5,
+    GROUP_CONCAT(evalplanpercents.eval6 SEPARATOR ":") AS percent6,
+    GROUP_CONCAT(evalplanpercents.eval7 SEPARATOR ":") AS percent7,
+    GROUP_CONCAT(evalplanpercents.eval8 SEPARATOR ":") AS percent8,
+    GROUP_CONCAT(evalplanpercents.eval9 SEPARATOR ":") AS percent9,
+    GROUP_CONCAT(evalplanpercents.eval10 SEPARATOR ":") AS percent10,
+    GROUP_CONCAT(evalplandates.eval1 SEPARATOR ":") AS date1,
+    GROUP_CONCAT(evalplandates.eval2 SEPARATOR ":") AS date2,
+    GROUP_CONCAT(evalplandates.eval3 SEPARATOR ":") AS date3,
+    GROUP_CONCAT(evalplandates.eval4 SEPARATOR ":") AS date4,
+    GROUP_CONCAT(evalplandates.eval5 SEPARATOR ":") AS date5,
+    GROUP_CONCAT(evalplandates.eval6 SEPARATOR ":") AS date6,
+    GROUP_CONCAT(evalplandates.eval7 SEPARATOR ":") AS date7,
+    GROUP_CONCAT(evalplandates.eval8 SEPARATOR ":") AS date8,
+    GROUP_CONCAT(evalplandates.eval9 SEPARATOR ":") AS date9,
+    GROUP_CONCAT(evalplandates.eval10 SEPARATOR ":") AS date10,
+    GROUP_CONCAT(evalplandescription.eval1 SEPARATOR ":") AS desc1,
+    GROUP_CONCAT(evalplandescription.eval2 SEPARATOR ":") AS desc2,
+    GROUP_CONCAT(evalplandescription.eval3 SEPARATOR ":") AS desc3,
+    GROUP_CONCAT(evalplandescription.eval4 SEPARATOR ":") AS desc4,
+    GROUP_CONCAT(evalplandescription.eval5 SEPARATOR ":") AS desc5,
+    GROUP_CONCAT(evalplandescription.eval6 SEPARATOR ":") AS desc6,
+    GROUP_CONCAT(evalplandescription.eval7 SEPARATOR ":") AS desc7,
+    GROUP_CONCAT(evalplandescription.eval8 SEPARATOR ":") AS desc8,
+    GROUP_CONCAT(evalplandescription.eval9 SEPARATOR ":") AS desc9,
+    GROUP_CONCAT(evalplandescription.eval10 SEPARATOR ":") AS desc10
+    from subjects
+    JOIN subjectsnames ON subjectsnames.id = subjects.idSubjectName 
+    JOIN seccions ON seccions.id = subjects.idSeccion 
+    JOIN seccionsnames ON seccions.idSeccionName = seccionsnames.id 
+    JOIN academicyears ON academicyears.id = seccions.idAcademicYear 
+    JOIN period ON period.id = seccions.idPeriod 
+    LEFT JOIN evaluationplan ON evaluationplan.idSubject = subjects.id
+    LEFT JOIN lapsename ON lapsename.id = evaluationplan.idLapse
+    LEFT JOIN evalplanpercents ON evalplanpercents.idEvaluationPlan = evaluationplan.id 
+    LEFT JOIN evalplandescription ON evalplandescription.idEvaluationPlan = evaluationplan.id 
+    LEFT JOIN evalplandates ON evalplandates.idEvaluationPlan = evaluationplan.id 
+    where subjects.idUser = '${userId}' 
+    GROUP BY subjects.id) AS subquery;`
+
+  const request = await sequelize.query(query, { type: QueryTypes.SELECT })
+  return request[0].totalRegistros
+}
+
+export async function academicYears () {
+  const result = await AcademicYear.count()
+  return result
 }

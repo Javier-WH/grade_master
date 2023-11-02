@@ -1,11 +1,28 @@
 import ErrorHandler from '../../errors/errorHandler.js'
 import getSubjectByUser from '../../SQL/Querys/user/getSubjectByUser.js'
+import { subjectByUserId } from '../../SQL/Querys/pages/getCountRegisters.js'
+import getTotalPages from '../../utils/getTableTotalPages.js'
+import { NotFoundError } from '../../errors/authentication_errors.js'
 
 export default async function getSubjects (req, res) {
   try {
-    const sqlRequest = await getSubjectByUser(req.body.id)
-    const grupedSubjects = mergeSubject(sqlRequest)
-    res.status(200).json(grupedSubjects)
+    const { id: userId, page } = req.body
+    const totalRegisters = await subjectByUserId({ userId })
+    const totalPages = await getTotalPages(totalRegisters)
+
+    if (page > totalPages) {
+      throw new NotFoundError('La pagina solicitada no existe ')
+    }
+
+    const sqlRequest = await getSubjectByUser({ userId, page })
+    const subjects = mergeSubject(sqlRequest)
+    const responseData = {
+      page,
+      totalPages,
+      userId,
+      subjects
+    }
+    res.status(200).json(responseData)
   } catch (error) {
     const { code, message } = ErrorHandler(error)
     res.status(code).send(message)

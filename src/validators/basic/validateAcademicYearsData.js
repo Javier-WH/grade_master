@@ -1,10 +1,9 @@
 import joi from 'joi'
 
-export default function validateGetSeccionData (id) {
+export default function validateAcademicYearsData (userData) {
   const singUpSchema = joi.object({
-    id: joi.string().uuid().required(),
     page: joi.number().positive().required()
   }).options({ allowUnknown: true, stripUnknown: true })
 
-  return singUpSchema.validate(id)
+  return singUpSchema.validate(userData)
 }
