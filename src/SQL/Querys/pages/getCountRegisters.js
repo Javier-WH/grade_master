@@ -6,6 +6,8 @@ import LapseName from '../../../models/basics/lapseName.js'
 import Period from '../../../models/basics/period.js'
 import Seccion from '../../../models/basics/seccion.js'
 import SeccionName from '../../../models/basics/seccionsName.js'
+import SubjectName from '../../../models/basics/subjecName.js'
+import Subject from '../../../models/basics/subject.js'
 
 export async function seccionBySubjectRegisters ({ id }) {
   const query = `
@@ -155,5 +157,13 @@ export async function seccion () {
 
 export async function seccionName () {
   const result = await SeccionName.count()
+  return result
+}
+export async function subjecName () {
+  const result = await SubjectName.count()
+  return result
+}
+export async function subject () {
+  const result = await Subject.count()
   return result
 }

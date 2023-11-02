@@ -24,5 +24,6 @@ router.get('/lapseNames', express.json(), validate)
 router.get('/periods', express.json(), validate)
 router.get('/seccions', express.json(), validate)
 router.get('/seccionNames', express.json(), validate)
-
+router.get('/subjectNames', express.json(), validate)
+router.get('/subjects', express.json(), validate)
 export default router
