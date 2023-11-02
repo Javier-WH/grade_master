@@ -1,23 +1,23 @@
 import ErrorHandler from '../../errors/errorHandler.js'
 import { NotFoundError } from '../../errors/authentication_errors.js'
-import { academicYears } from '../../SQL/Querys/pages/getCountRegisters.js'
-import getTableTotalPages from '../../utils/getTableTotalPages.js'
-import GetAcademicYears from '../../SQL/Querys/basic/getAcademicYears.js'
+import { seccion } from '../../SQL/Querys/pages/getCountRegisters.js'
+import GetSeccion from '../../SQL/Querys/basic/getSeccions.js'
+import getTotalPages from '../../utils/getTableTotalPages.js'
 
-export default async function getAcademicYears (req, res) {
+export default async function getSeccions (req, res) {
   try {
     const { page } = req.body
-    const totalRegisters = await academicYears()
-    const totalPages = getTableTotalPages(totalRegisters)
+    const totalRegisters = await seccion()
+    const totalPages = getTotalPages(totalRegisters)
     if (page > totalPages) {
       throw new NotFoundError()
     }
-    const years = await GetAcademicYears({ page })
+    const seccions = await GetSeccion({ page })
     const responseData = {
       page,
       totalPages,
       totalRegisters,
-      academicYears: years
+      seccions
     }
     res.status(200).json(responseData)
   } catch (error) {

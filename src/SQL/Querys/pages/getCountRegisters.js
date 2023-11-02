@@ -2,6 +2,10 @@ import sequelize from '../../connection.js'
 import Student from '../../../models/students/student.js'
 import { QueryTypes } from 'sequelize'
 import AcademicYear from '../../../models/basics/academicYears.js'
+import LapseName from '../../../models/basics/lapseName.js'
+import Period from '../../../models/basics/period.js'
+import Seccion from '../../../models/basics/seccion.js'
+import SeccionName from '../../../models/basics/seccionsName.js'
 
 export async function seccionBySubjectRegisters ({ id }) {
   const query = `
@@ -132,5 +136,24 @@ export async function subjectByUserId ({ userId }) {
 
 export async function academicYears () {
   const result = await AcademicYear.count()
+  return result
+}
+
+export async function lapsename () {
+  const result = await LapseName.count()
+  return result
+}
+
+export async function period () {
+  const result = await Period.count()
+  return result
+}
+export async function seccion () {
+  const result = await Seccion.count()
+  return result
+}
+
+export async function seccionName () {
+  const result = await SeccionName.count()
   return result
 }

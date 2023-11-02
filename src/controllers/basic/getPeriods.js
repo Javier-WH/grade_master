@@ -1,23 +1,23 @@
 import ErrorHandler from '../../errors/errorHandler.js'
 import { NotFoundError } from '../../errors/authentication_errors.js'
-import { academicYears } from '../../SQL/Querys/pages/getCountRegisters.js'
-import getTableTotalPages from '../../utils/getTableTotalPages.js'
-import GetAcademicYears from '../../SQL/Querys/basic/getAcademicYears.js'
+import { period } from '../../SQL/Querys/pages/getCountRegisters.js'
+import GetPeriods from '../../SQL/Querys/basic/getPeriods.js'
+import getTotalPages from '../../utils/getTableTotalPages.js'
 
-export default async function getAcademicYears (req, res) {
+export default async function getPeriods (req, res) {
   try {
     const { page } = req.body
-    const totalRegisters = await academicYears()
-    const totalPages = getTableTotalPages(totalRegisters)
+    const totalRegisters = await period()
+    const totalPages = getTotalPages(totalRegisters)
     if (page > totalPages) {
       throw new NotFoundError()
     }
-    const years = await GetAcademicYears({ page })
+    const periods = await GetPeriods({ page })
     const responseData = {
       page,
       totalPages,
       totalRegisters,
-      academicYears: years
+      periods
     }
     res.status(200).json(responseData)
   } catch (error) {

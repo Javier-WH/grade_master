@@ -5,7 +5,7 @@ import ErrorHandler from '../../errors/errorHandler.js'
 
 const router = express.Router()
 
-router.get('/academicYears', express.json(), (req, res, next) => {
+function validate (req, res, next) {
   try {
     const { error, value } = validateAcademicYearsData(req.body)
     if (error) {
@@ -17,6 +17,12 @@ router.get('/academicYears', express.json(), (req, res, next) => {
     const { code, message } = ErrorHandler(error)
     res.status(code).send(message)
   }
-})
+}
+
+router.get('/academicYears', express.json(), validate)
+router.get('/lapseNames', express.json(), validate)
+router.get('/periods', express.json(), validate)
+router.get('/seccions', express.json(), validate)
+router.get('/seccionNames', express.json(), validate)
 
 export default router
