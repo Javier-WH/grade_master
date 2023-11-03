@@ -8,7 +8,8 @@ export const userDataConst = {
 
 export const baseRoutes = {
   seccion: '/seccion',
-  user: '/user'
+  user: '/user',
+  basic: '/basic'
 }
 
 export const pageSize = 30

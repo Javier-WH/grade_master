@@ -7,10 +7,10 @@ import { baseRoutes } from '../../const/const.js'
 
 const router = express.Router()
 
-const { seccion } = baseRoutes
+const { seccion, basic } = baseRoutes
 router.use(middleware)
 router.use(seccion, put)
-router.use(get)
+router.use(basic, get)
 router.use(post)
 
 export default router
