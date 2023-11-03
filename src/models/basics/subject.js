@@ -3,6 +3,7 @@ import sequelize from '../../SQL/connection.js'
 import Seccion from './seccion.js'
 import SubjectName from './subjecName.js'
 import User from '../user/user.js'
+import Period from '../basics/period.js'
 
 class Subject extends Model { }
 
@@ -38,6 +39,15 @@ Subject.init(
         key: 'id'
       },
       field: 'idUser'
+    },
+    idPeriod: {
+      type: DataTypes.CHAR(36),
+      allowNull: false,
+      references: {
+        model: Period,
+        key: 'id'
+      },
+      field: 'idPeriod'
     }
   },
   {
@@ -48,7 +58,7 @@ Subject.init(
     indexes: [
       {
         unique: true,
-        fields: ['idSeccion', 'idSubjectName']
+        fields: ['idSeccion', 'idSubjectName', 'idPeriod']
       }
     ]
   }

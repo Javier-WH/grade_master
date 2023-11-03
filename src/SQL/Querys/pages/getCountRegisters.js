@@ -8,6 +8,7 @@ import Seccion from '../../../models/basics/seccion.js'
 import SeccionName from '../../../models/basics/seccionsName.js'
 import SubjectName from '../../../models/basics/subjecName.js'
 import Subject from '../../../models/basics/subject.js'
+import Grade from '../../../models/students/grade.js'
 
 export async function seccionBySubjectRegisters ({ id }) {
   const query = `
@@ -123,7 +124,7 @@ export async function subjectByUserId ({ userId }) {
     JOIN seccions ON seccions.id = subjects.idSeccion 
     JOIN seccionsnames ON seccions.idSeccionName = seccionsnames.id 
     JOIN academicyears ON academicyears.id = seccions.idAcademicYear 
-    JOIN period ON period.id = seccions.idPeriod 
+    JOIN period ON period.id = subjects.idPeriod
     LEFT JOIN evaluationplan ON evaluationplan.idSubject = subjects.id
     LEFT JOIN lapsename ON lapsename.id = evaluationplan.idLapse
     LEFT JOIN evalplanpercents ON evalplanpercents.idEvaluationPlan = evaluationplan.id 
@@ -165,5 +166,10 @@ export async function subjecName () {
 }
 export async function subject () {
   const result = await Subject.count()
+  return result
+}
+
+export async function grade () {
+  const result = await Grade.count()
   return result
 }

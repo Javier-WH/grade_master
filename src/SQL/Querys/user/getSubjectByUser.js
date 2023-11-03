@@ -49,7 +49,7 @@ export default async function getSubjectByUser ({ userId, page }) {
  JOIN seccions ON seccions.id = subjects.idSeccion 
  JOIN seccionsnames ON seccions.idSeccionName = seccionsnames.id 
  JOIN academicyears ON academicyears.id = seccions.idAcademicYear 
- JOIN period ON period.id = seccions.idPeriod 
+ JOIN period ON period.id = subjects.idPeriod
  LEFT JOIN evaluationplan ON evaluationplan.idSubject = subjects.id 
  LEFT JOIN lapsename ON lapsename.id = evaluationplan.idLapse 
  LEFT JOIN evalplanpercents ON evalplanpercents.idEvaluationPlan = evaluationplan.id 

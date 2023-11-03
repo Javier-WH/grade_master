@@ -16,43 +16,43 @@ EvalPlanPercents.init(
       field: 'idEvaluationPlan'
     },
     eval1: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval2: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval3: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval4: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval5: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval6: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval7: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval8: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval9: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     },
     eval10: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING(255),
       defaultValue: null
     }
   },

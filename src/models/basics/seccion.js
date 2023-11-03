@@ -2,7 +2,6 @@ import { Model, DataTypes } from 'sequelize'
 import sequelize from '../../SQL/connection.js'
 import SeccionName from './seccionsName.js'
 import AcademicYear from './academicYears.js'
-import Period from './period.js'
 
 class Seccion extends Model { }
 
@@ -29,15 +28,6 @@ Seccion.init(
         key: 'id'
       },
       field: 'idAcademicYear'
-    },
-    idPeriod: {
-      type: DataTypes.CHAR(36),
-      allowNull: false,
-      references: {
-        model: Period,
-        key: 'id'
-      },
-      field: 'idPeriod'
     }
   },
   {
@@ -48,7 +38,7 @@ Seccion.init(
     indexes: [
       {
         unique: true,
-        fields: ['idSeccionName', 'idAcademicYear', 'idPeriod']
+        fields: ['idSeccionName', 'idAcademicYear']
       }
     ]
   }

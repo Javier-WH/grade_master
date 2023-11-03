@@ -10,7 +10,8 @@ EvaluationPlan.init(
     id: {
       type: DataTypes.CHAR(36),
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     idSubject: {
       type: DataTypes.CHAR(36),
@@ -34,7 +35,13 @@ EvaluationPlan.init(
     sequelize,
     modelName: 'EvaluationPlan',
     tableName: 'evaluationPlan',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['idSubject', 'idLapse']
+      }
+    ]
   }
 )
 
