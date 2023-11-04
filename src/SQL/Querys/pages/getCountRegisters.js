@@ -176,8 +176,8 @@ export async function subjecName () {
   const result = await SubjectName.count()
   return result
 }
-export async function subject () {
-  const result = await Subject.count()
+export async function subject ({ idPeriod }) {
+  const result = await Subject.count({ where: { idPeriod } })
   return result
 }
 
