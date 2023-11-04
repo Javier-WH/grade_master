@@ -8,7 +8,7 @@ import { NotFoundError } from '../../../errors/authentication_errors.js'
 
 export default async function getStudentsBySubjectId (req, res) {
   try {
-    const page = req.body.page
+    const { page, idPeriod } = req.body
     const totalRegisters = await seccionBySubjectRegisters(req.body)
     const totalPages = await getTotalPages(totalRegisters)
 
@@ -17,9 +17,15 @@ export default async function getStudentsBySubjectId (req, res) {
     }
 
     const sqlRequest = await _getStudentsBySubjectId(req.body)
+
+    if (sqlRequest.length === 0) {
+      throw new NotFoundError('No se encontraron datos para esa seccion o peiordo')
+    }
+
     const { students, seccionId, seccionName, subjectId, subjecName, teacherId } = orderSeccionData(sqlRequest)
     const response = {
       page,
+      idPeriod,
       totalPages,
       totalRegisters,
       pageSize,

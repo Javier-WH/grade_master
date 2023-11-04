@@ -10,7 +10,7 @@ import SubjectName from '../../../models/basics/subjecName.js'
 import Subject from '../../../models/basics/subject.js'
 import Grade from '../../../models/students/grade.js'
 
-export async function seccionBySubjectRegisters ({ id }) {
+export async function seccionBySubjectRegisters ({ id, idPeriod }) {
   const query = `
 SELECT COUNT(*) AS totalRegistros
 FROM (
@@ -57,7 +57,7 @@ FROM (
       AND grades.idStudent = students.id
     LEFT JOIN failed ON students.failed = failed.id
   WHERE
-    subjects.id = '${id}'
+       subjects.id = "${id}" AND subjects.idPeriod = "${idPeriod}" 
   GROUP BY
     students.id
 ) AS subquery;
@@ -67,15 +67,27 @@ FROM (
   return request[0].totalRegistros
 }
 
-export async function seccionByIdRegisters ({ idSeccion }) {
-  const result = await Student.count(
-    {
-      where: {
-        idSeccion
-      }
-    }
-  )
-  return result
+export async function seccionByIdRegisters ({ idSeccion, idPeriod }) {
+  const query = `SELECT COUNT(*) AS totalRegistros
+                 FROM (
+                  SELECT DISTINCT
+                  students.id AS "idStudent",
+                  students.name AS "studentName",
+                  students.lastName AS "studentLastName",
+                  students.ci AS "studentCi",
+                  students.failed AS "studentFailed",
+                  period.id AS "idPeriod",
+                  period.period AS "periodName"
+                  FROM students
+                  JOIN seccions ON seccions.id = students.idSeccion
+                  JOIN subjects ON subjects.idSeccion = seccions.id
+                  JOIN period ON period.id = subjects.idPeriod
+                  WHERE seccions.id = "${idSeccion}" AND subjects.idPeriod = "${idPeriod}"
+                  ) AS subquery;`
+
+  const request = await sequelize.query(query, { type: QueryTypes.SELECT })
+
+  return request[0].totalRegistros
 }
 
 export async function subjectByUserId ({ userId }) {

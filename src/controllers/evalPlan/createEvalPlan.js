@@ -18,15 +18,6 @@ export default async function createEvalPlan (req, res) {
   } = req.body
 
   try {
-    // si no envía un id, implioca que se desea hacer una actualización, por lo tanto tiene que enviar un date, percernt o desc...
-    if (!id && (!dates || !percents || !desc)) {
-      throw new MissingDataError()
-    }
-
-    if (id && (!idSubject || !idLapse)) {
-      throw new MissingDataError()
-    }
-
     let idEvaluationPlan = null
     if (id) {
       idEvaluationPlan = id

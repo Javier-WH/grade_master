@@ -8,18 +8,19 @@ import { pageSize } from '../../../const/const.js'
 
 export default async function getStudentsBySeccionId (req, res) {
   try {
-    const { id: idSeccion, page } = req.body
-    const totalRegisters = await seccionByIdRegisters({ idSeccion })
+    const { id: idSeccion, page, idPeriod } = req.body
+    const totalRegisters = await seccionByIdRegisters({ idSeccion, idPeriod })
     const totalPages = getTotalPages(totalRegisters)
 
     if (page > totalPages) {
       throw new NotFoundError('La pagina solicitada no existe')
     }
 
-    const sqlRequest = await _getStudentsBySeccionId({ idSeccion, page })
+    const sqlRequest = await _getStudentsBySeccionId({ idSeccion, page, idPeriod })
     const student = oderSeccionData(sqlRequest)
     const responseData = {
       page,
+      idPeriod,
       totalPages,
       totalRegisters,
       pageSize,

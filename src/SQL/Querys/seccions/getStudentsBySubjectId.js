@@ -1,7 +1,7 @@
 import sequelize from '../../connection.js'
 import { pageSize } from '../../../const/const.js'
 
-export default async function getStudentsBySubjectId ({ id, page }) {
+export default async function getStudentsBySubjectId ({ id, page, idPeriod }) {
   const offset = (page - 1) * pageSize
 
   const query = `SELECT 
@@ -49,7 +49,7 @@ export default async function getStudentsBySubjectId ({ id, page }) {
     LEFT JOIN failed ON students.failed = failed.id  
     LEFT JOIN lapsename ON lapsename.id = evaluationplan.idLapse 
     WHERE 
-    subjects.id = "${id}" 
+    subjects.id = "${id}" AND subjects.idPeriod = "${idPeriod}" 
     GROUP BY 
     students.id 
     ORDER BY 
