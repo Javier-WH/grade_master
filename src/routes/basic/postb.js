@@ -9,12 +9,12 @@ import getSubjects from '../../controllers/basic/getSubjects.js'
 
 const router = express.Router()
 
-router.get('/academicYears', getAcademicYears)
-router.get('/lapseNames', getLapseNames)
-router.get('/periods', getPeriods)
-router.get('/seccions', getSeccions)
-router.get('/seccionNames', getSeccionNames)
-router.get('/subjectNames', getSubjectNames)
-router.get('/subjects', getSubjects)
+router.post('/academicYears', getAcademicYears)
+router.post('/lapseNames', getLapseNames)
+router.post('/periods', getPeriods)
+router.post('/seccions', getSeccions)
+router.post('/seccionNames', getSeccionNames)
+router.post('/subjectNames', getSubjectNames)
+router.post('/subjects', getSubjects)
 
 export default router

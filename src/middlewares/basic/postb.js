@@ -19,11 +19,11 @@ function validate (req, res, next) {
   }
 }
 
-router.get('/academicYears', express.json(), validate)
-router.get('/lapseNames', express.json(), validate)
-router.get('/periods', express.json(), validate)
-router.get('/seccions', express.json(), validate)
-router.get('/seccionNames', express.json(), validate)
-router.get('/subjectNames', express.json(), validate)
-router.get('/subjects', express.json(), validate)
+router.post('/academicYears', express.json(), validate)
+router.post('/lapseNames', express.json(), validate)
+router.post('/periods', express.json(), validate)
+router.post('/seccions', express.json(), validate)
+router.post('/seccionNames', express.json(), validate)
+router.post('/subjectNames', express.json(), validate)
+router.post('/subjects', express.json(), validate)
 export default router

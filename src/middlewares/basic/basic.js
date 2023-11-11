@@ -1,7 +1,7 @@
 import express from 'express'
 import put from './put.js'
 import post from './post.js'
-import get from './get.js'
+import postb from './postb.js'
 import validateUser from '../user/validateUser.js'
 import { baseRoutes } from '../../const/const.js'
 
@@ -12,5 +12,5 @@ const { seccion, basic } = baseRoutes
 router.use(seccion, put)
 router.use(post)
 router.use(basic, validateUser)
-router.use(basic, get)
+router.use(basic, postb)
 export default router
