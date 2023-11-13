@@ -4,6 +4,6 @@ import getStudentsBySubjectId from '../../controllers/seccion/getSeccionBySubjec
 
 const router = express.Router()
 
-router.get('/id', getStudentsBySeccionId)
-router.get('/subject', getStudentsBySubjectId)
+router.post('/id', getStudentsBySeccionId)
+router.post('/subject', getStudentsBySubjectId)
 export default router

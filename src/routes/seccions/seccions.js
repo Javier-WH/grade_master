@@ -1,5 +1,5 @@
 import express from 'express'
-import get from './get.js'
+import postb from './postb.js'
 import post from './post.js'
 import del from './delete.js'
 import patch from './patch.js'
@@ -10,7 +10,7 @@ const router = express.Router()
 const { seccion } = baseRoutes
 
 router.use(middlewares)
-router.use(seccion, get)
+router.use(seccion, postb)
 router.use(seccion, post)
 router.use(seccion, del)
 router.use(seccion, patch)

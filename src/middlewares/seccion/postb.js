@@ -20,7 +20,7 @@ const validateSeccionData = async (req, res, next) => {
   }
 }
 
-router.get('/id', express.json(), validateSeccionData)
-router.get('/subject', express.json(), validateSeccionData)
+router.post('/id', express.json(), validateSeccionData)
+router.post('/subject', express.json(), validateSeccionData)
 
 export default router
