@@ -5,7 +5,7 @@ import validateUserId from '../../validators/user/validateUserID.js'
 
 const router = express.Router()
 
-router.get('/subjects', express.json(), (req, res, next) => {
+router.post('/subjects', express.json(), (req, res, next) => {
   try {
     const { error, value } = validateUserId(req.body)
     if (error) {
