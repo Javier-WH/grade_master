@@ -37,4 +37,8 @@ router.post('/insert', express.json(), (req, res, next) => {
   }
 })
 
+router.post('/evalPlan', express.json(), (req, res, next) => {
+  next()
+})
+
 export default router

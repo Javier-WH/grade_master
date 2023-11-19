@@ -1,5 +1,4 @@
 import sequelize from '../../connection.js'
-import Student from '../../../models/students/student.js'
 import { QueryTypes } from 'sequelize'
 import AcademicYear from '../../../models/basics/academicYears.js'
 import LapseName from '../../../models/basics/lapseName.js'
@@ -184,4 +183,53 @@ export async function subject ({ idPeriod }) {
 export async function grade () {
   const result = await Grade.count()
   return result
+}
+
+export async function EvalPlan ({ idSubject }) {
+  const query = `SELECT COUNT(*) AS totalRegistros
+      FROM (
+      SELECT  
+        evaluationplan.id AS "idEvaluationPlan",
+        evaluationplan.idSubject,
+        evaluationplan.idLapse,
+        evalplanpercents.eval1 AS "per1",
+        evalplanpercents.eval2 AS "per2",
+        evalplanpercents.eval3 AS "per3",
+        evalplanpercents.eval4 AS "per4",
+        evalplanpercents.eval5 AS "per5",
+        evalplanpercents.eval6 AS "per6",
+        evalplanpercents.eval7 AS "per7",
+        evalplanpercents.eval8 AS "per8",
+        evalplanpercents.eval9 AS "per9",
+        evalplanpercents.eval10 AS "per10",
+        evalplandescription.eval1 AS "desc1",
+        evalplandescription.eval2 AS "desc2",
+        evalplandescription.eval3 AS "desc3",
+        evalplandescription.eval4 AS "desc4",
+        evalplandescription.eval5 AS "desc5",
+        evalplandescription.eval6 AS "desc6",
+        evalplandescription.eval7 AS "desc7",
+        evalplandescription.eval8 AS "desc8",
+        evalplandescription.eval9 AS "desc9",
+        evalplandescription.eval10 AS "desc10",
+        evalplandates.eval1 AS "date1",
+        evalplandates.eval2 AS "date2",
+        evalplandates.eval3 AS "date3",
+        evalplandates.eval4 AS "date4",
+        evalplandates.eval5 AS "date5",
+        evalplandates.eval6 AS "date6",
+        evalplandates.eval7 AS "date7",
+        evalplandates.eval8 AS "date8",
+        evalplandates.eval9 AS "date9",
+        evalplandates.eval10 AS "date10"
+        FROM evaluationplan
+        JOIN evalplanpercents ON evalplanpercents.idEvaluationPlan = evaluationplan.id
+        JOIN evalplandescription ON evalplandescription.idEvaluationPlan = evaluationplan.id
+        JOIN evalplandates ON evalplandates.idEvaluationPlan = evaluationplan.id
+        WHERE evaluationplan.idSubject = '${idSubject}'
+      ) AS subquery;`
+
+  const request = await sequelize.query(query, { type: QueryTypes.SELECT })
+
+  return request[0].totalRegistros
 }
