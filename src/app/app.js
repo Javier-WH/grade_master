@@ -4,6 +4,7 @@ import seccion from '../routes/seccions/seccions.js'
 import user from '../routes/users/users.js'
 import basic from '../routes/basic/basic.js'
 import evalPlan from '../routes/evalPlan/evalPlan.js'
+import students from '../routes/students/students.js'
 import cors from 'cors'
 
 const app = express()
@@ -19,6 +20,7 @@ app.use(seccion)
 app.use(user)
 app.use(basic)
 app.use(evalPlan)
+app.use(students)
 app.use(notFound)
 
 export default app

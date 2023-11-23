@@ -7,7 +7,6 @@ import { NotFoundError } from '../../errors/authentication_errors.js'
 
 export default async function getEvalPlan (req, res) {
   try {
-    console.log(req.body)
     const { page, idSubject } = req.body
     const totalRegisters = await EvalPlan(req.body)
     const totalPages = await getTotalPages(totalRegisters)

@@ -70,7 +70,13 @@ Grade.init(
     sequelize,
     modelName: 'Grade',
     tableName: 'grades',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['idStudent', 'idEvaluationPlan']
+      }
+    ]
   }
 )
 
