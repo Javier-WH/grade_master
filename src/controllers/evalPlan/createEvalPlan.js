@@ -44,7 +44,7 @@ export default async function createEvalPlan (req, res) {
     }
 
     await transaction.commit()
-    res.status(200).send('Plan de evaluasción actualizado')
+    res.status(200).send(idEvaluationPlan)
   } catch (error) {
     await transaction.rollback()
     const { code, message } = ErrorHandler(error)
