@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.post('/updateGrades', express.json(), (req, res, next) => {
   try {
+    console.log(req.body)
     const { error, value } = validateAcademicYearsData(req.body)
     if (error) {
       throw new MissingDataError()
