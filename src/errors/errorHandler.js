@@ -18,7 +18,7 @@ export default function errorManager (error) {
     message = error.message
     code = 404
   }
-  console.log(error)
+  console.log(error.message)
   return {
     message,
     code

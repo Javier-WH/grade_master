@@ -22,4 +22,16 @@ router.post('/login', express.json(), validate)
 
 router.post('/signup', express.json(), validate)
 
+router.post('/userData', express.json(), (req, res, next) => {
+  next()
+})
+
+router.post('/getUserData', express.json(), (req, res, next) => {
+  next()
+})
+
+router.post('/updateUserData', express.json(), (req, res, next) => {
+  next()
+})
+
 export default router
