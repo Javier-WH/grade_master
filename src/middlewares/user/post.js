@@ -34,4 +34,7 @@ router.post('/updateUserData', express.json(), (req, res, next) => {
   next()
 })
 
+router.post('/updateUserPass', express.json(), (req, res, next) => {
+  next()
+})
 export default router
