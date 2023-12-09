@@ -1,4 +1,5 @@
 import Grades from '../../../models/students/grade.js'
+import getEvalPercents from '../evaluationPlan/getEvalPlanPercents.js'
 
 export default async function UpdateGrades (studentData) {
   const {
@@ -15,6 +16,9 @@ export default async function UpdateGrades (studentData) {
     eval9,
     eval10
   } = studentData
+
+  const percents = await getEvalPercents({ idEvaluationPlan })
+  const evalsNumber = percents.length
 
   const evals = {}
 
@@ -42,12 +46,16 @@ export default async function UpdateGrades (studentData) {
   if (eval8) {
     evals.eval8 = eval8
   }
-
   if (eval9) {
     evals.eval9 = eval9
   }
   if (eval10) {
     evals.eval10 = eval10
+  }
+
+  // elimina las notas sobrantes, es decir las que no tienen porcentajes
+  for (let i = (evalsNumber + 1); i <= 10; i++) {
+    evals[`eval${i}`] = null
   }
 
   const gradesExist = await Grades.findOne(
