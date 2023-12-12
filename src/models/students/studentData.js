@@ -13,7 +13,8 @@ StudentData.init(
       references: {
         model: Student,
         key: 'id'
-      }
+      },
+      field: 'studentId'
     },
     fatherId: {
       type: DataTypes.CHAR(36),
@@ -21,7 +22,8 @@ StudentData.init(
       references: {
         model: Parents,
         key: 'id'
-      }
+      },
+      field: 'fatherId'
     },
     motherId: {
       type: DataTypes.CHAR(36),
@@ -29,7 +31,8 @@ StudentData.init(
       references: {
         model: Parents,
         key: 'id'
-      }
+      },
+      field: 'motherId'
     },
     tutorId: {
       type: DataTypes.CHAR(36),
@@ -37,7 +40,8 @@ StudentData.init(
       references: {
         model: Parents,
         key: 'id'
-      }
+      },
+      field: 'tutorId'
     },
     gender: {
       type: DataTypes.CHAR(1),
@@ -45,7 +49,8 @@ StudentData.init(
     },
     birthDate: {
       type: DataTypes.CHAR(36),
-      allowNull: false
+      allowNull: false,
+      field: 'birthDate'
     }
   },
   {
@@ -56,4 +61,4 @@ StudentData.init(
   }
 )
 
-export default Student
+export default StudentData
