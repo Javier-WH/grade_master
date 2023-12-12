@@ -22,34 +22,34 @@ export default async function UpdateGrades (studentData) {
 
   const evals = {}
 
-  if (eval1) {
+  if (eval1 !== undefined) {
     evals.eval1 = eval1
   }
-  if (eval2) {
+  if (eval2 !== undefined) {
     evals.eval2 = eval2
   }
-  if (eval3) {
+  if (eval3 !== undefined) {
     evals.eval3 = eval3
   }
-  if (eval4) {
+  if (eval4 !== undefined) {
     evals.eval4 = eval4
   }
-  if (eval5) {
+  if (eval5 !== undefined) {
     evals.eval5 = eval5
   }
-  if (eval6) {
+  if (eval6 !== undefined) {
     evals.eval6 = eval6
   }
-  if (eval7) {
+  if (eval7 !== undefined) {
     evals.eval7 = eval7
   }
-  if (eval8) {
+  if (eval8 !== undefined) {
     evals.eval8 = eval8
   }
-  if (eval9) {
+  if (eval9 !== undefined) {
     evals.eval9 = eval9
   }
-  if (eval10) {
+  if (eval10 !== undefined) {
     evals.eval10 = eval10
   }
 

@@ -5,6 +5,7 @@ import user from '../routes/users/users.js'
 import basic from '../routes/basic/basic.js'
 import evalPlan from '../routes/evalPlan/evalPlan.js'
 import students from '../routes/students/students.js'
+import parents from '../routes/parents/parents.js'
 import cors from 'cors'
 
 const app = express()
@@ -21,6 +22,7 @@ app.use(user)
 app.use(basic)
 app.use(evalPlan)
 app.use(students)
+app.use(parents)
 app.use(notFound)
 
 export default app

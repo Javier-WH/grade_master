@@ -1,13 +1,12 @@
 import express from 'express'
 import post from './post.js'
-import get from './get.js'
+
 import { baseRoutes } from '../../const/const.js'
 
 const router = express.Router()
 
-const { students } = baseRoutes
+const { parents } = baseRoutes
 
-router.use(students, post)
-router.use(students, get)
+router.use(parents, post)
 
 export default router

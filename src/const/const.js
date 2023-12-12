@@ -11,7 +11,8 @@ export const baseRoutes = {
   user: '/user',
   basic: '/basic',
   evalPlan: '/evalPlan',
-  students: '/students'
+  students: '/students',
+  parents: '/parents'
 }
 
 export const pageSize = 30
