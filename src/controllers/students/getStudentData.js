@@ -1,6 +1,6 @@
 import GetStudentData from '../../SQL/Querys/students/getStudentData.js'
 import ErrorHandler from '../../errors/errorHandler.js'
-
+// test
 export default async function getStudentData (req, res) {
   try {
     const data = await GetStudentData(req.body)
