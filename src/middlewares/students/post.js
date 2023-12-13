@@ -35,4 +35,5 @@ router.post('/updateData', express.json(), (req, res, next) => {
 
 router.post('/getData', express.json(), (req, res, next) => { next() })
 
+router.post('/getStudent', express.json(), (req, res, next) => { next() })
 export default router

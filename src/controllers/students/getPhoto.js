@@ -11,7 +11,7 @@ export default async function getPhoto (req, res) {
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      console.log(err)
+      // console.log(err)
       res.statusCode = 404
       res.end('La foto no fue encontrada')
       return
