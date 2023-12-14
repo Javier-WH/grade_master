@@ -22,7 +22,8 @@ export default async function getAStudent ({ name, lastName, ci, page }) {
     students.name AS studentName,
     students.lastName AS studentLastname,
     students.ci AS studentCi,
-    students.idSeccion AS seccionId,
+    seccionsnames.name AS seccionName,
+    academicyears.name AS academicYear,
     studentdata.gender AS studentGender,
     studentdata.birthDate AS studentBirthDate,
     father.id AS fatherId,
@@ -48,6 +49,9 @@ export default async function getAStudent ({ name, lastName, ci, page }) {
     LEFT JOIN parents father ON studentdata.fatherId = father.id
     LEFT JOIN parents mother ON studentdata.motherId = mother.id
     LEFT JOIN parents tutor ON studentdata.tutorId = tutor.id
+    LEFT JOIN seccions seccion ON students.idSeccion = seccion.id
+    LEFT JOIN seccionsnames ON seccionsnames.id = seccion.idSeccionName
+    LEFT JOIN academicyears ON seccion.idAcademicYear = academicyears.id
     WHERE students.name LIKE "%${name}%" OR students.lastName LIKE "%${lastName}%" OR students.ci LIKE "%${ci}%"
     LIMIT ${limit} OFFSET ${offset};`
 

@@ -17,7 +17,7 @@ export default async function getStudent (req, res) {
     const sqlRequest = await getAStudent(req.body)
 
     if (sqlRequest.length === 0) {
-      throw new NotFoundError('No se encontraron datos para esa seccion o peiordo')
+      throw new NotFoundError('No se encontraron estudiantes que conincidan con los criterios de busqueda')
     }
 
     const cleanRequest = sqlRequest.map(objeto => {
