@@ -23,6 +23,10 @@ router.post('/login', express.json(), (req, res, next) => {
   next()
 })
 
+router.post('/admin', express.json(), (req, res, next) => {
+  next()
+})
+
 router.post('/signup', express.json(), validate)
 
 router.post('/userData', express.json(), (req, res, next) => {

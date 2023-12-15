@@ -5,10 +5,12 @@ import registerUserData from '../../controllers/user/registerUserData.js'
 import findUserData from '../../controllers/user/findUserData.js'
 import updateUserData from '../../controllers/user/updateUserData.js'
 import updateUserPassword from '../../controllers/user/updateUserPassword.js'
+import loginAdmin from '../../controllers/admin/loginAdmin.js'
 
 const router = express.Router()
 
 router.post('/login', login)
+router.post('/admin', loginAdmin)
 router.post('/signup', signup)
 router.post('/userData', registerUserData)
 router.post('/getUserData')
