@@ -6,16 +6,16 @@ class Config extends Model { }
 Config.init(
   {
     id: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
     value: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.CHAR(255),
       allowNull: false
     }
   },
